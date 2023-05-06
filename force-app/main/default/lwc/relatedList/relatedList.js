@@ -58,8 +58,6 @@ export default class RelatedList extends NavigationMixin(LightningElement) {
             this.count  = data.length;
             this.title = this.objectLabel+' '+this.count;
             this.data = data;
-                //this.data.forEach(key => key['name'] = '/' +key['Id']);
-                //this.data.forEach(key => key.name       = '/' +key.Id);         ///lightning/r/Account
                 for(let key of this.data){
                    for(let field of fieldsData.fields){
                         if(field.referenceField == 'true'){
@@ -100,7 +98,6 @@ export default class RelatedList extends NavigationMixin(LightningElement) {
     }
     handleRowAction(event) {
         const actionName = event.detail.action.name;
-        console.log('@@@@@@@@@====Action Name====='+actionName);
         const row = event.detail.row;
 
         console.log('row====='+row);
