@@ -1,0 +1,168 @@
+<template>
+    
+    <lightning-card>
+        <!--Shows all sobjects form org-->
+        <lightning-layout 
+            horizontal-align="center" 
+            vertical-align="center">
+            <lightning-layout-item 
+                flexibility="auto" 
+                padding="around-small" 
+                size="1" >
+                <lightning-formatted-text 
+                    value="Select Object">
+                </lightning-formatted-text>
+            </lightning-layout-item>
+            <lightning-layout-item 
+                flexibility="auto" 
+                padding="around-small" 
+                size="3">
+                <lightning-combobox
+                    name="objectbox"
+                    label=""
+                    value=""
+                    placeholder="--none--"
+                    options={options} 
+                    onchange={handleObjectChange}
+                ></lightning-combobox>
+            </lightning-layout-item>
+        </lightning-layout>
+        
+        <!-- shows all fields of selected object -->
+        <template if:true={dualbox_option.length}>
+            <hr>
+            <lightning-layout 
+                horizontal-align="center">
+                <lightning-layout-item 
+                    size="1"
+                    flexibility="auto" 
+                    padding="around-small">
+                    <lightning-formatted-text 
+                        value="Choose Fields:-">
+                    </lightning-formatted-text>
+                </lightning-layout-item>
+                <lightning-layout-item 
+                    flexibility="auto" 
+                    padding="around-small" 
+                    size="6">
+                    <lightning-dual-listbox 
+                        name="fieldbox"
+                        label="Select Fields"
+                        source-label="Available"
+                        selected-label="Selected"
+                        field-level-help="Select fields of your choice"
+                        options={dualbox_options}
+                        onchange={handleFieldChange}>
+                    </lightning-dual-listbox>
+                </lightning-layout-item>
+            </lightning-layout>
+        </template>
+        
+        <!-- button to search selected fields -->
+        <template if:true={selectedFields.length}> 
+            <lightning-layout 
+                horizontal-align="center">
+                <lightning-layout-item>
+                    <lightning-button 
+                        class="slds-m-bottom_large"
+                        label="Search Fields" 
+                        onclick={handleSearchFields}>
+                    </lightning-button>
+                </lightning-layout-item>
+            </lightning-layout>
+        </template>
+        
+        <!-- record edit form to fill data and search -->
+        <template if:true={searchFieldsClicked}><hr>
+                    <lightning-formatted-text class="slds-m-left_small" 
+                        value="Fill Data to Search Records:-">
+                    </lightning-formatted-text>
+        
+                    <lightning-record-edit-form 
+                        object-api-name={selectedObject}
+                        ><!--onsubmit={handleFormSubmit}-->
+                        <lightning-messages></lightning-messages>
+          
+                        <template 
+                            for:each={selectedFields} 
+                            for:item="item" 
+                            class="slds-grid slds-clearfix">
+                                <lightning-input-field 
+                                    class="slds-col slds-size_1-of-4 slds-float_left" 
+                                    field-name={item} 
+                                    name={item} 
+                                    key={item}
+                                    onblur={handleFocus}
+                                    id={item}>
+                                </lightning-input-field>
+                        </template>
+                        <hr>
+                        <!--<lightning-button class="slds-float_none slds-m-left_large slds-m-bottom_large"
+                            label="Search Records"
+                            type="submit"
+                            name="submit">
+                        </lightning-button>-->
+                    </lightning-record-edit-form>
+                    <lightning-button class="slds-float_none slds-m-left_large slds-m-bottom_large"
+                            label="Search Records"
+                            name="submit"
+                            onclick={handleSubmitClick}>
+                    </lightning-button>
+        </template>
+        
+        <!--DataTable and Pagination-->
+        <template if:true={paginationData}>
+            <hr>
+            <lightning-layout>
+                <p class="slds-m-left_small">Records :</p>
+            </lightning-layout>
+            <lightning-layout>
+                <lightning-layout-item>
+                    <lightning-datatable
+                        key-field="id"
+                        data={dataToShow}
+                        columns={columns}
+                        onsave={handleDatatableSave}
+                        show-row-number-column
+                        hide-checkbox-column ="true"
+                        onrowaction={handleRowActions}>
+                    </lightning-datatable>
+                </lightning-layout-item>
+            </lightning-layout>
+        
+            <lightning-layout class="slds-m-top_medium">
+                <lightning-layout-item size="1">
+                    <p class="slds-m-left_small">Total Number of Record's - {totalRecords}</p>
+                </lightning-layout-item>
+                <lightning-layout-item size="1"></lightning-layout-item>
+                <lightning-layout-item size="2">
+                    <lightning-button class="slds-m-right_medium"
+                        label="First" 
+                        onclick={firstPage} 
+                        disabled={firstPageState}></lightning-button>
+                    <lightning-button 
+                        label="Previous" 
+                        onclick={previousPage} 
+                        disabled={firstPageState}></lightning-button>
+                </lightning-layout-item>
+                <lightning-layout-item size="2"></lightning-layout-item>
+                <lightning-layout-item size="1">
+                    <p>Page {pageNumber} of {totalPage}</p>
+                </lightning-layout-item>
+                <lightning-layout-item size="2"></lightning-layout-item>
+                <lightning-layout-item size="2">
+                    <lightning-button class="slds-m-right_medium"
+                        label="Next" 
+                        onclick={nextPage} 
+                        disabled={lastPageState}></lightning-button>
+                    <lightning-button 
+                        label="Last" 
+                        onclick={lastPage} 
+                        disabled={lastPageState}></lightning-button>
+                </lightning-layout-item>
+            </lightning-layout>
+
+            
+        </template>
+    </lightning-card>
+</template>

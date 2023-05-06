@@ -1,0 +1,43 @@
+<!--
+<template>
+  <lightning-card title="HelloWorld" icon-name="custom:custom14">
+    <div class="slds-m-around_medium">
+      <p>Hello, {greeting}!</p>
+      <lightning-input label="Name" value={greeting} onchange={changeHandler}></lightning-input>
+    </div>
+  </lightning-card>
+</template>
+-->
+<!--
+<template>
+  <lightning-card title="Basic DOM Example" icon-name="utility:hierarchy">
+    <div class="slds-card__body slds-card__body-inner">
+      <p>
+        <template if:true={show}>
+          when true
+        </template>
+        <template if:false={show}>
+          when false
+        </template>
+        //<lightning-formatted-text value={text}></lightning-formatted-text>
+      </p>
+      
+      <p>
+        <lightning-button label="Switch" onclick={handleClick} variant="neutral"></lightning-button>
+        //<lightning-input value={text} label="Input text" onchange={handleChange}></lightning-input>
+      </p>
+    </div>
+  </lightning-card>
+</template>
+-->
+<template>
+  <div id="waiting" if:false={ready}></div>
+  <div id="display" if:true={ready}>
+    <div>Name:{name}</div>
+    <div>Description:{description}</div>
+    <lightning-badge label={material}></lightning-badge>
+    <lightning-badge label={category}></lightning-badge>
+    <div>Price:{price}</div>
+    <div><img src={pictureUrl}></div>
+  </div>
+</template>

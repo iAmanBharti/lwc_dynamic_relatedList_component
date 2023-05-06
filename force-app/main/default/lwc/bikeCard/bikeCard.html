@@ -1,0 +1,33 @@
+<template>
+  <!--<lightning-card>
+      <lightning-record-form
+          object-api-name={objectApiName}
+          fields={fields}
+          onsuccess={handleSuccess}
+          >
+      </lightning-record-form>
+  </lightning-card>-->
+
+  <lightning-card>
+    <lightning-record-form
+      object-api-name ={objectApiName}
+      fields = {fields}
+      onsuccess={handleSuccess}>
+    </lightning-record-form>
+  </lightning-card>
+</template>
+<!--<template>
+  <div>
+      
+      <lightning-input onchange={handleChange} label="Input Text" value="text"></lightning-input>
+      <p>Name: {text}</p>
+      
+      <div>Name: {name}</div>
+      <div>Description: {description}</div>
+      <lightning-badge label={material}></lightning-badge>
+      <lightning-badge label={category}></lightning-badge>
+      <div>Price: {price}</div>
+      <div><img src={pictureUrl}/></div>
+    </div>
+  </template>
+-->

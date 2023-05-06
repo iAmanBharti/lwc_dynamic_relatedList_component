@@ -1,0 +1,6 @@
+<apex:page controller="GoogleAuthentication">
+    Google Drive Integration
+    <apex:form>
+        <apex:commandButton action="{!gDriveAuth}" value="Google Drive"/>
+    </apex:form>
+</apex:page>
