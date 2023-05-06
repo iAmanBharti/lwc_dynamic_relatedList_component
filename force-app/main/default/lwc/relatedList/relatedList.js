@@ -52,7 +52,6 @@ export default class RelatedList extends NavigationMixin(LightningElement) {
         this.columns.push({ type:'action',
                             intialWidth:'100px',
                             typeAttributes:{rowActions:this.actions}});   
-        console.log('object name'+this.objectAPIName);
         getRelatedRecords({objName : this.objectAPIName, fieldsName : fieldNames, recordCount : this.recordCount, sortField : this.sortField, filter : this.filter})
         .then((data)=>{
             this.count  = data.length;
@@ -76,7 +75,6 @@ export default class RelatedList extends NavigationMixin(LightningElement) {
                 }
         })
         .catch((error)=>{
-            console.log('Error ERROR !!!');
             const event = new ShowToastEvent({
                 title:'Error',
                 message:'Records Not Found !'
@@ -96,12 +94,10 @@ export default class RelatedList extends NavigationMixin(LightningElement) {
             }
         });
     }
+
     handleRowAction(event) {
         const actionName = event.detail.action.name;
         const row = event.detail.row;
-
-        console.log('row====='+row);
-        console.log('row id===='+row.Id);
         switch (actionName) {
             case 'edit': this[NavigationMixin.Navigate]({
                 type:'standard__recordPage',
@@ -116,7 +112,6 @@ export default class RelatedList extends NavigationMixin(LightningElement) {
             const id =  row.Id.replace('/','');
             deleteRecord(id)
             .then(()=>{
-                console.log('record deleted successfully');
                 let index = 0;
                 let originalData = this.data;            
                 originalData.forEach(row => {
@@ -129,7 +124,11 @@ export default class RelatedList extends NavigationMixin(LightningElement) {
                                             });                        
             })
             .catch(error =>{
-                console.log('error while deleting record');
+                const event = new ShowToastEvent({
+                    title:'Error',
+                    message:'Fail To delete record !'
+                });
+                this.dispatchEvent(event);
             });
             break;
         }
