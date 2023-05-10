@@ -8,8 +8,6 @@
  * 1.0                Delta CX Consulting         04/05/2023
  ******************************************************************************************************************************************************/
 
-
-
 public with sharing class RelatedListController {
     /**
      * @description
@@ -37,11 +35,12 @@ public with sharing class RelatedListController {
 
         System.debug('Query => '+query);
        	System.debug(Database.query(query));
+        System.debug('one');
+        System.debug('two');
+        System.debug('three');
+        System.debug('four');
+        //test cmt
+        //another test data
         return Database.query(query);
-    }
-    /**
-    test cmt
-    test cmt
-    test cmt
-    */
+    }   
 }
