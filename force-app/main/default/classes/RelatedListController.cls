@@ -45,11 +45,12 @@ public with sharing class RelatedListController {
         /
 
         some addition
+        abcdefghijklm
+        some addition
+        some addition
+        some addition
+        some addition
 
-        some addition
-        some addition
-        some addition
-        some addition
          */
         return Database.query(query);
     }   
