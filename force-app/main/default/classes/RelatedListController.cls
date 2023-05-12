@@ -42,22 +42,7 @@ public with sharing class RelatedListController {
         //test cmt
         //another test data
         //one more cmt////
-        /*//
-        //
-        /
-
-        some addition
-        abcdefghijklm
-        some addition
-        some addition
-        some addition
-        some additionsome addition
-        some addition
-        some addition
-        some additionsome addition
-        some addition
-
-         */
+       
         return Database.query(query);
     }   
 }
