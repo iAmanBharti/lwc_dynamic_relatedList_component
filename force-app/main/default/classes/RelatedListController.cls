@@ -37,7 +37,7 @@ public with sharing class RelatedListController {
        	System.debug(Database.query(query));
         System.debug('ok');
         System.debug('two');
-        System.debug('three');
+        System.debug('three');//this is three cmt
         System.debug('four');
         System.debug('five');
         System.debug('six');
