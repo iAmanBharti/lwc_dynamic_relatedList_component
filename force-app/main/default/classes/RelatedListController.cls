@@ -43,6 +43,7 @@ public with sharing class RelatedListController {
         System.debug('six');
         //-----------------
         System.debug('Seven');
+        System.debug('eight');
         //test cmt
         //another test data
         //one more cmt////
