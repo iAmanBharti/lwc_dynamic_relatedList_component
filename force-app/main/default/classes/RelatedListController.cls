@@ -44,6 +44,7 @@ public with sharing class RelatedListController {
         //-----------------
         System.debug('Seven');
         System.debug('eight');
+        System.debug('nine');
         //test cmt
         //another test data
         //one more cmt////
