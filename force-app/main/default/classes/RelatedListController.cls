@@ -49,6 +49,7 @@ public with sharing class RelatedListController {
 
         some addition
          */
+        System.debug('second last');
         System.debug('last');
         return Database.query(query);
     }   
